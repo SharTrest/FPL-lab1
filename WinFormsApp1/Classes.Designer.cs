@@ -28,34 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            SuspendLayout();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Save = new System.Windows.Forms.Button();
+            this.Clean = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SuspendLayout();
             // 
             // dataGridView1
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(1, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(799, 449);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(1, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.Size = new System.Drawing.Size(913, 599);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // Save
+            // 
+            this.Save.Location = new System.Drawing.Point(941, 92);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(94, 29);
+            this.Save.TabIndex = 1;
+            this.Save.Text = "Сохранить";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // Clean
+            // 
+            this.Clean.Location = new System.Drawing.Point(941, 27);
+            this.Clean.Name = "Clean";
+            this.Clean.Size = new System.Drawing.Size(94, 29);
+            this.Clean.TabIndex = 2;
+            this.Clean.Text = "Очистить";
+            this.Clean.UseVisualStyleBackColor = true;
+            this.Clean.Click += new System.EventHandler(this.button2_Click);
             // 
             // Classes
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
-            Name = "Classes";
-            Text = "Classes";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1047, 600);
+            this.Controls.Add(this.Clean);
+            this.Controls.Add(this.Save);
+            this.Controls.Add(this.dataGridView1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "Classes";
+            this.Text = "Classes";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
 
         private DataGridView dataGridView1;
+        private Button Save;
+        private Button Clean;
     }
 }

@@ -14,15 +14,15 @@ namespace WinFormsApp1
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Path());
+            Application.Run(new Form1());
         }
     }
     public class Lab1
     {
         public string path;
-        public string[] codeNames(string pathCode, string[] code)
+        public string[] codeNames(string[] code)
         {
-            using (FileStream fileRead = new FileStream(pathCode, FileMode.OpenOrCreate))
+            using (FileStream fileRead = new FileStream(path, FileMode.OpenOrCreate))
             {
                 using (StreamReader stream = new StreamReader(fileRead, Encoding.Default))
                 {
@@ -32,8 +32,10 @@ namespace WinFormsApp1
                         int lengthstr = line.Length;
                         int sym = line[0];
                         int ii = 4;
+                        code[sym - 1072] = null;
                         while (ii < lengthstr)
                         {
+
                             code[sym - 1072] += line[ii].ToString();
                             ii++;
                         }
@@ -50,26 +52,34 @@ namespace WinFormsApp1
             char ch;
             string result = null;
 
-            while (i < length)
+            try
             {
-                string decode = null;
-                while (i < length && (ch = text[i]) != ' ')
+                while (i < length)
                 {
-                    decode += ch.ToString();
+                    string decode = null;
+                    while (i < length && (ch = text[i]) != ' ')
+                    {
+                        decode += ch.ToString();
+                        i++;
+                    }
+                    int j = 0;
+                    while (decode != code[j])
+                    {
+                        j++;
+                    }
+                    j += 1072;
+                    result += (char)j;
                     i++;
                 }
-                int j = 0;
-                while (decode != code[j])
-                {
-                    j++;
-                }
-                j += 1072;
-                result += (char)j;
-                i++;
             }
-            return result;
+            catch
+            {
+                Form error = new ErorMSG();
+                error.Show();
+            }
+                return result;
         }
-
+            
         public string coding(string text, string[] code)
         {
             int i = 0;
