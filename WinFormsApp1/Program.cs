@@ -61,11 +61,7 @@ namespace WinFormsApp1
             Excel.Worksheet xlSht;
             Excel.Application ex = new Microsoft.Office.Interop.Excel.Application();
             System.Diagnostics.Process excelProc = System.Diagnostics.Process.GetProcessesByName("EXCEL").Last();
-            xlWB = ex.Workbooks.Open(this.path,
-  Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-  Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-  Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-  Type.Missing, Type.Missing);
+            xlWB = ex.Workbooks.Open(this.path);
             xlSht = xlWB.ActiveSheet;
 
                 for (int j = 1; j <= 32; j++)
