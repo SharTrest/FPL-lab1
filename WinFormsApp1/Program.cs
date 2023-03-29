@@ -1,5 +1,9 @@
+using Microsoft.Office.Interop.Excel;
 using System;
+using System.Diagnostics;
 using System.Text;
+using Excel = Microsoft.Office.Interop.Excel;
+
 
 namespace WinFormsApp1
 {
@@ -14,13 +18,18 @@ namespace WinFormsApp1
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+
+            System.Windows.Forms.Application.Run(new Form1());
         }
+
     }
+
+
+
     public class Lab1
     {
         public string path;
-        public string[] codeNames(string[] code)
+        public string[] codeNamesTxt(string[] code)
         {
             using (FileStream fileRead = new FileStream(path, FileMode.OpenOrCreate))
             {
@@ -35,13 +44,52 @@ namespace WinFormsApp1
                         code[sym - 1072] = null;
                         while (ii < lengthstr)
                         {
-
                             code[sym - 1072] += line[ii].ToString();
                             ii++;
                         }
                     }
-                }
+                }   
             };
+            return code;
+        }
+
+        public string[] codeNamesXLS(string[] code)
+        {
+            int k = 0;
+            Excel.Range Rng;
+            Excel.Workbook xlWB;
+            Excel.Worksheet xlSht;
+            Excel.Application ex = new Microsoft.Office.Interop.Excel.Application();
+            System.Diagnostics.Process excelProc = System.Diagnostics.Process.GetProcessesByName("EXCEL").Last();
+            xlWB = ex.Workbooks.Open(this.path,
+  Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+  Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+  Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+  Type.Missing, Type.Missing);
+            xlSht = xlWB.ActiveSheet;
+
+                for (int j = 1; j <= 32; j++)
+                {
+                    Excel.Range forYach = xlSht.Cells[j, 2] as Excel.Range;
+                    try
+                    {
+                        string yach = forYach.Value2.ToString();
+                        code[k] = yach;
+                    }
+                    catch { }
+                    
+                    k++;
+                }
+
+
+            ex.Quit();
+            xlWB = null;
+            xlSht = null;
+            Rng = null;
+            ex = null;
+            CloseProcess();
+
+
             return code;
         }
 
@@ -71,13 +119,14 @@ namespace WinFormsApp1
                     result += (char)j;
                     i++;
                 }
+                return result;
             }
             catch
             {
-                Form error = new ErorMSG();
-                error.Show();
+                MessageBox.Show("Отсутствует код в классификаторе!", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return " ";
             }
-                return result;
+                
         }
             
         public string coding(string text, string[] code)
@@ -97,7 +146,17 @@ namespace WinFormsApp1
             return result;
         }
 
+        public void CloseProcess()
+        {
+            Process[] List;
+            List = Process.GetProcessesByName("EXCEL");
+            foreach (Process proc in List)
+            {
+                proc.Kill();
 
+            }
         }
+
+    }
 
 }

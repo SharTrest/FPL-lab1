@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace WinFormsApp1
 {
-    
+
     public partial class Classes : Form
     {
-        private string[] code = new string[33];
+        private string[] code = new string[32];
         public Classes(string[] code)
         {
             this.code = code;
@@ -21,9 +21,9 @@ namespace WinFormsApp1
             int k = 0;
             dataGridView1.ColumnCount = 4;
             dataGridView1.RowCount = 18;
-            for (int i = 0; i < 18 && k < 33; i++)
+            for (int i = 0; i < 18 && k < code.Length; i++)
             {
-                for (int j = 0; j < 4 && k < 33; j++)
+                for (int j = 0; j < 4 && k < code.Length; j++)
                 {
                     if (j % 2 == 1)
                     {
@@ -47,15 +47,15 @@ namespace WinFormsApp1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             int k = 0;
-            for (int i = 0; i < 18 && k < 33; i++)
+            for (int i = 0; i < 18 && k < code.Length; i++)
             {
-                for (int j = 0; j < 4 && k < 33; j++)
+                for (int j = 0; j < 4 && k < code.Length; j++)
                 {
                     if (j % 2 == 1)
                     {
@@ -70,9 +70,9 @@ namespace WinFormsApp1
         private void button2_Click(object sender, EventArgs e)
         {
             int k = 0;
-            for (int i = 0; i < 18 && k < 33; i++)
+            for (int i = 0; i < 18 && k < code.Length; i++)
             {
-                for (int j = 0; j < 4 && k < 33; j++)
+                for (int j = 0; j < 4 && k < code.Length; j++)
                 {
                     if (j % 2 == 1)
                     {
@@ -81,6 +81,24 @@ namespace WinFormsApp1
                             code[k] = null;
                             dataGridView1[j, i].Value = null;
                         }
+                        k++;
+                    }
+                }
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            int k = 0;
+            for (int i = 0; i < 18 && k < code.Length; i++)
+            {
+                for (int j = 0; j < 4 && k < code.Length; j++)
+                {
+                    if (j % 2 == 1)
+                    {
+
+                        code[k] = Convert.ToString(k + 1072, 2);
+                        dataGridView1[j, i].Value = code[k];
                         k++;
                     }
                 }
