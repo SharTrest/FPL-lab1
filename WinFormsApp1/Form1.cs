@@ -15,6 +15,9 @@ namespace WinFormsApp1
         public Form1()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            
+
         }
 
         private void button1_Click(object sender, EventArgs e)

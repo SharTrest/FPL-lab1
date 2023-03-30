@@ -69,19 +69,23 @@ namespace WinFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int k = 0;
-            for (int i = 0; i < 18 && k < code.Length; i++)
+            if (MessageBox.Show("Вы действительно хотите очистить классификатор?", "Очистка классификатора", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
+
             {
-                for (int j = 0; j < 4 && k < code.Length; j++)
+                int k = 0;
+                for (int i = 0; i < 18 && k < code.Length; i++)
                 {
-                    if (j % 2 == 1)
+                    for (int j = 0; j < 4 && k < code.Length; j++)
                     {
-                        if (dataGridView1[j, i].Value != null)
+                        if (j % 2 == 1)
                         {
-                            code[k] = null;
-                            dataGridView1[j, i].Value = null;
+                            if (dataGridView1[j, i].Value != null)
+                            {
+                                code[k] = null;
+                                dataGridView1[j, i].Value = null;
+                            }
+                            k++;
                         }
-                        k++;
                     }
                 }
             }
